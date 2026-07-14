@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(curl -s \"http://localhost:5174/src/posts/getting-started-with-vue.md?import&raw\")",
-      "Bash(git commit -m 'Fix base path: use / for dev, /my-blog/ for production *)"
+      "Bash(git commit -m 'Fix base path: use / for dev, /my-blog/ for production *)",
+      "Bash(git ls-remote *)",
+      "Bash(git commit -m 'Fix CI: use Node 22 and skip tsc in workflow *)"
     ]
   }
 }
