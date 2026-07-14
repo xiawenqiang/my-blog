@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b21b6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#g4)"/>
+  <rect x="20" y="20" width="560" height="360" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" rx="8"/>
+  <rect x="40" y="40" width="520" height="320" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" rx="4"/>
+  <text x="300" y="130" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="sans-serif">计算机科学与技术</text>
+  <text x="300" y="165" text-anchor="middle" fill="white" font-size="24" font-weight="bold" font-family="sans-serif">学士学位</text>
+  <text x="300" y="205" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="16" font-family="sans-serif">某某大学 · 计算机学院</text>
+  <line x1="200" y1="235" x2="400" y2="235" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <text x="300" y="270" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13" font-family="sans-serif">全日制本科 · 四年制</text>
+  <text x="300" y="295" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13" font-family="sans-serif">GPA: 3.8 / 4.0 · 优秀毕业生</text>
+  <text x="300" y="340" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="11" font-family="sans-serif">学位证书编号：XXXX-XXXX ｜ 毕业时间：2020 年 6 月</text>
+</svg>
