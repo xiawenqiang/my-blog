@@ -1,4 +1,4 @@
-import{r as e,s as t,y as n}from"./index-Dp46v-Mx.js";var r=Object.defineProperty,i=(e,t)=>{let n={};for(var i in e)r(n,i,{get:e[i],enumerable:!0});return t||r(n,Symbol.toStringTag,{value:`Module`}),n},a=`---
+import{r as e,s as t,y as n}from"./index-D3RQb51x.js";var r=Object.defineProperty,i=(e,t)=>{let n={};for(var i in e)r(n,i,{get:e[i],enumerable:!0});return t||r(n,Symbol.toStringTag,{value:`Module`}),n},a=`---
 title: AI 入门课程 · 详细教案（24 课时）
 date: 2024-07-14
 tags: [AI, 教程, 入门, 教案]
