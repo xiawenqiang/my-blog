@@ -78,7 +78,7 @@ function formatDate(dateStr: string): string {
             <span>👤</span> 关于我
           </RouterLink>
           <a
-            href="/夏文强-简历附件-2026.1.pdf"
+            href="/resume.pdf"
             download
             class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full
                    bg-blue-500 text-white text-sm font-medium
@@ -226,7 +226,7 @@ function formatDate(dateStr: string): string {
         </div>
 
         <a
-          href="/夏文强-简历附件-2026.1.pdf"
+          href="/resume.pdf"
           download
           class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl
                  bg-blue-500 text-white text-sm font-medium

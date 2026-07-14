@@ -55,7 +55,7 @@ const socials = [
           <span>{{ s.icon }}</span><span>{{ s.name }}</span>
         </a>
         <a
-          href="/夏文强-简历附件-2026.1.pdf"
+          href="/resume.pdf"
           download
           class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-sm rounded-full
                  bg-blue-500 text-white hover:bg-blue-600 transition-colors
@@ -93,11 +93,11 @@ const socials = [
         class="rounded-xl border border-[var(--color-border)] overflow-hidden
                bg-[var(--color-code-bg)] shadow-sm cursor-pointer
                hover:shadow-md transition-shadow"
-        @click="openPreview('/夏文强_01(1).png')"
+        @click="openPreview('/intro.png')"
       >
         <img
-          src="/夏文强_01(1).png"
-          alt="夏文强个人介绍"
+          src="/intro.png"
+          alt="个人介绍"
           class="w-full"
         />
       </div>
@@ -106,7 +106,7 @@ const socials = [
         <button
           class="text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]
                  underline underline-offset-2 transition-colors cursor-pointer bg-transparent border-0"
-          @click="openPreview('/夏文强_01(1).png')"
+          @click="openPreview('/intro.png')"
         >
           点击放大查看完整长图 →
         </button>
@@ -134,7 +134,7 @@ const socials = [
           <span class="text-sm font-medium text-[var(--color-heading)]">{{ s.name }}</span>
         </a>
         <a
-          href="/夏文强-简历附件-2026.1.pdf"
+          href="/resume.pdf"
           download
           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg no-underline
                  bg-blue-500 text-white shadow-sm hover:bg-blue-600 hover:shadow-md
