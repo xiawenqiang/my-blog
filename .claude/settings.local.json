@@ -9,7 +9,9 @@
       "Bash(npm install *)",
       "Bash(curl -s http://localhost:5173)",
       "Bash(node -e ' *)",
-      "Bash(pkill -f \"vite\")"
+      "Bash(pkill -f \"vite\")",
+      "Bash(git ls-remote *)",
+      "Bash(git commit -m 'Fix: add contents write permission for gh-pages deployment *)"
     ]
   }
 }

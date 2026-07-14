@@ -4,6 +4,10 @@ on:
   push:
     branches: [master]
 
+# 关键：给予写入权限，否则无法推送到 gh-pages 分支
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
