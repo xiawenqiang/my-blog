@@ -19,6 +19,12 @@ import { RouterLink } from 'vue-router'
           >
             首页
           </RouterLink>
+          <RouterLink
+            to="/about"
+            class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline"
+          >
+            关于
+          </RouterLink>
           <a
             href="https://github.com"
             target="_blank"
