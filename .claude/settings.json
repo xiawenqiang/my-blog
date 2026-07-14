@@ -5,7 +5,9 @@
       "Bash(git commit -m 'Fix base path: use / for dev, /my-blog/ for production *)",
       "Bash(git ls-remote *)",
       "Bash(git commit -m 'Fix CI: use Node 22 and skip tsc in workflow *)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git commit -m '添加作者介绍页面（关于），含证书展示、荣誉时间线、技能标签 *)",
+      "Bash(git commit -m '更新关于页面：使用真实姓名、简历PDF、个人介绍长图 *)"
     ]
   }
 }

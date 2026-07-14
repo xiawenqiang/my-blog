@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// 当前预览的大图
 const previewImage = ref<string | null>(null)
 
 function openPreview(url: string) {
@@ -12,61 +11,67 @@ function closePreview() {
   previewImage.value = null
 }
 
-// ========== 以下数据可自行修改 ==========
+function handleImageError(e: Event) {
+  const el = e.target as HTMLImageElement
+  el.style.display = 'none'
+  const parent = el.parentElement
+  if (parent) {
+    const ph = document.createElement('div')
+    ph.className = 'w-full h-full flex items-center justify-center text-4xl'
+    ph.textContent = '📜'
+    parent.appendChild(ph)
+  }
+}
 
-// 证书 & 资质图片列表（图片放 public/images/ 目录下）
+// ========== 以下信息请自行修改 ==========
+
 const certificates = [
   {
-    title: '高级软件工程师',
+    title: '资深前端开发工程师',
     org: '工业和信息化部',
-    date: '2023 年',
+    date: '2026 年',
     image: '/images/cert-1.jpg',
-    desc: '通过全国计算机技术与软件专业技术资格（水平）考试，获得高级工程师职称。',
+    desc: '具备高级工程师职称，专注于前端架构设计与工程化实践。',
   },
   {
-    title: 'AWS 解决方案架构师',
-    org: 'Amazon Web Services',
-    date: '2023 年',
+    title: '全栈开发能力认证',
+    org: '技术认证中心',
+    date: '2025 年',
     image: '/images/cert-2.jpg',
-    desc: '具备在 AWS 云平台上设计和部署可扩展、高可用系统的专业能力。',
+    desc: '掌握前端到后端的完整技术栈，具备独立交付复杂项目的能力。',
   },
   {
-    title: 'Vue 开源贡献者',
-    org: 'Vue.js 社区',
-    date: '2024 年',
+    title: '开源社区贡献者',
+    org: '开源技术社区',
+    date: '2025 年',
     image: '/images/cert-3.jpg',
-    desc: '为 Vue 生态提交多个 PR 被合并，参与官方文档翻译和维护工作。',
+    desc: '积极参与开源项目，为多个技术社区贡献代码和文档。',
   },
   {
-    title: '计算机科学与技术学士',
-    org: '某某大学',
-    date: '2020 年',
+    title: '计算机相关专业',
+    org: '高等院校',
+    date: '毕业',
     image: '/images/cert-4.jpg',
-    desc: '全日制本科，主修计算机科学与技术，GPA 3.8/4.0。',
+    desc: '全日制本科学历，计算机相关专业背景，理论基础扎实。',
   },
 ]
 
-// 荣誉 & 成就
 const honors = [
-  { year: '2024', title: '公司年度最佳技术博客', detail: '内部技术分享平台年度阅读量第一' },
-  { year: '2023', title: 'Hackathon 一等奖', detail: '48 小时极限编程大赛，作品获评委全票通过' },
-  { year: '2022', title: '开源之星', detail: '个人 GitHub 项目累计获得 5K+ Star' },
-  { year: '2021', title: '优秀毕业生', detail: '计算机学院前 5%' },
+  { year: '2026', title: '资深前端工程师', detail: '具备复杂业务场景下的架构设计与技术选型能力' },
+  { year: '2025', title: '全栈开发实践', detail: '独立完成多个从零到一的全栈项目交付' },
+  { year: '2024', title: '技术写作与分享', detail: '持续输出高质量技术文章，帮助更多开发者成长' },
+  { year: '2023', title: '开源贡献', detail: '开始积极参与开源社区，提交代码与文档贡献' },
 ]
 
-// 技能标签
 const skills = [
-  'Vue.js', 'React', 'TypeScript', 'Node.js',
-  'Python', 'Docker', 'AWS', 'MySQL',
-  'Redis', 'Git', 'CI/CD', 'Tailwind CSS',
+  'Vue.js', 'React', 'TypeScript', 'JavaScript',
+  'Node.js', 'Python', 'HTML/CSS', 'Tailwind CSS',
+  'Git', 'Docker', 'CI/CD', 'RESTful API',
 ]
 
-// 社交链接
 const socials = [
   { name: 'GitHub', url: 'https://github.com', icon: '💻' },
-  { name: '掘金', url: 'https://juejin.cn', icon: '📖' },
-  { name: '知乎', url: 'https://zhihu.com', icon: '📝' },
-  { name: '邮箱', url: 'mailto:hello@example.com', icon: '📧' },
+  { name: '邮箱', url: 'mailto:xiawenqiang@example.com', icon: '📧' },
 ]
 </script>
 
@@ -75,27 +80,23 @@ const socials = [
     <!-- ========== 头像 & 简介 ========== -->
     <section class="text-center mb-16">
       <div class="relative inline-block mb-6">
-        <div class="w-28 h-28 rounded-full overflow-hidden ring-4 ring-[var(--color-accent)] ring-offset-4 ring-offset-[var(--color-bg)] mx-auto
-                    shadow-lg hover:scale-105 transition-transform duration-300">
-          <img
-            src="/images/avatar.jpg"
-            alt="作者头像"
-            class="w-full h-full object-cover"
-            @error="(e) => { (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e5e7eb%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-size=%2240%22>👤</text></svg>' }"
-          />
+        <div
+          class="w-28 h-28 rounded-full overflow-hidden ring-4 ring-[var(--color-accent)] ring-offset-4 ring-offset-[var(--color-bg)] mx-auto
+                    shadow-lg hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-blue-400 to-purple-500
+                    flex items-center justify-center"
+        >
+          <span class="text-5xl text-white font-bold">夏</span>
         </div>
-        <!-- 装饰圆点 -->
-        <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-green-400 rounded-full border-4 border-[var(--color-bg)]" title="在线"></div>
+        <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-green-400 rounded-full border-4 border-[var(--color-bg)]" title="在线" />
       </div>
 
-      <h1 class="text-3xl font-bold text-[var(--color-heading)] mb-2">张三</h1>
+      <h1 class="text-3xl font-bold text-[var(--color-heading)] mb-2">夏文强</h1>
       <p class="text-[var(--color-accent)] font-medium mb-3">全栈开发工程师 · 技术写作者</p>
       <p class="text-[var(--color-text-secondary)] max-w-lg mx-auto leading-relaxed">
-        热爱开源与技术分享，专注于前端工程化和云原生领域。
+        热爱开源与技术分享，专注于前端工程化和全栈开发领域。
         工作之余喜欢写博客记录所学所思，希望能帮助更多开发者少走弯路。
       </p>
 
-      <!-- 社交链接 -->
       <div class="flex justify-center gap-4 mt-5">
         <a
           v-for="s in socials" :key="s.name"
@@ -107,6 +108,18 @@ const socials = [
         >
           <span>{{ s.icon }}</span>
           <span>{{ s.name }}</span>
+        </a>
+
+        <!-- 简历下载 -->
+        <a
+          href="/夏文强-简历附件-2026.1.pdf"
+          download
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full
+                 bg-blue-500 text-white hover:bg-blue-600
+                 transition-colors no-underline shadow-sm"
+        >
+          <span>📄</span>
+          <span>下载简历</span>
         </a>
       </div>
     </section>
@@ -125,13 +138,49 @@ const socials = [
       </div>
       <div class="text-center p-4 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100
                   dark:from-purple-900/20 dark:to-purple-800/20 border border-purple-200 dark:border-purple-800/30">
-        <div class="text-2xl font-bold text-purple-600">5K+</div>
-        <div class="text-xs text-[var(--color-text-secondary)] mt-1">GitHub Star</div>
+        <div class="text-2xl font-bold text-purple-600">10+</div>
+        <div class="text-xs text-[var(--color-text-secondary)] mt-1">开源项目</div>
       </div>
       <div class="text-center p-4 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100
                   dark:from-orange-900/20 dark:to-orange-800/20 border border-orange-200 dark:border-orange-800/30">
-        <div class="text-2xl font-bold text-orange-600">10+</div>
-        <div class="text-xs text-[var(--color-text-secondary)] mt-1">开源项目</div>
+        <div class="text-2xl font-bold text-orange-600">3+</div>
+        <div class="text-xs text-[var(--color-text-secondary)] mt-1">技术认证</div>
+      </div>
+    </section>
+
+    <!-- ========== 个人介绍长图 ========== -->
+    <section class="mb-16">
+      <h2 class="text-xl font-bold text-[var(--color-heading)] mb-2 text-center">个人介绍</h2>
+      <p class="text-sm text-[var(--color-text-secondary)] text-center mb-6">点击图片可放大查看</p>
+
+      <div
+        class="relative rounded-xl border border-[var(--color-border)] overflow-hidden
+               bg-[var(--color-code-bg)] cursor-pointer group shadow-md
+               hover:shadow-lg transition-shadow"
+        @click="openPreview('/夏文强_01(1).png')"
+      >
+        <!-- 滚动容器 -->
+        <div class="max-h-[500px] overflow-y-auto scroll-smooth">
+          <img
+            src="/夏文强_01(1).png"
+            alt="夏文强个人介绍"
+            class="w-full"
+          />
+        </div>
+
+        <!-- 顶部渐变遮罩提示 -->
+        <div class="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[var(--color-bg)]/80 to-transparent
+                    flex items-start justify-center pt-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <span class="text-xs text-[var(--color-text-secondary)] bg-[var(--color-bg)]/90 px-3 py-1 rounded-full">
+            点击放大查看完整图片
+          </span>
+        </div>
+
+        <!-- 底部渐变 -->
+        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[var(--color-bg)]/80 to-transparent
+                    flex items-end justify-center pb-3 pointer-events-none">
+          <span class="text-xs text-[var(--color-text-secondary)]">↓ 滚动查看更多 ↓</span>
+        </div>
       </div>
     </section>
 
@@ -163,7 +212,6 @@ const socials = [
                  overflow-hidden hover:shadow-lg hover:border-[var(--color-accent)]/30
                  transition-all duration-300"
         >
-          <!-- 证书图片 -->
           <div
             class="relative h-48 bg-[var(--color-code-bg)] cursor-pointer overflow-hidden"
             @click="openPreview(cert.image)"
@@ -172,18 +220,8 @@ const socials = [
               :src="cert.image"
               :alt="cert.title"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              @error="(e) => {
-                (e.target as HTMLImageElement).style.display = 'none'
-                const parent = (e.target as HTMLElement).parentElement
-                if (parent) {
-                  const placeholder = document.createElement('div')
-                  placeholder.className = 'w-full h-full flex items-center justify-center text-4xl'
-                  placeholder.textContent = '📜'
-                  parent.appendChild(placeholder)
-                }
-              }"
+              @error="handleImageError"
             />
-            <!-- 悬浮遮罩 -->
             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors
                         flex items-center justify-center">
               <span class="opacity-0 group-hover:opacity-100 transition-opacity
@@ -193,7 +231,6 @@ const socials = [
             </div>
           </div>
 
-          <!-- 证书信息 -->
           <div class="p-4">
             <h3 class="font-semibold text-[var(--color-heading)]">{{ cert.title }}</h3>
             <div class="flex items-center gap-2 mt-1 text-xs text-[var(--color-text-secondary)]">
@@ -209,14 +246,13 @@ const socials = [
 
     <!-- ========== 荣誉成就（时间线） ========== -->
     <section class="mb-16">
-      <h2 class="text-xl font-bold text-[var(--color-heading)] mb-6 text-center">荣誉 & 成就</h2>
+      <h2 class="text-xl font-bold text-[var(--color-heading)] mb-6 text-center">成长历程</h2>
 
       <div class="relative pl-8 border-l-2 border-[var(--color-border)] ml-4 space-y-8">
         <div
           v-for="h in honors" :key="h.year + h.title"
           class="relative"
         >
-          <!-- 时间线圆点 -->
           <div class="absolute -left-[calc(2rem+5px)] top-1 w-3 h-3 rounded-full
                       bg-[var(--color-accent)] ring-4 ring-[var(--color-bg)]" />
 
@@ -236,7 +272,7 @@ const socials = [
                     border border-[var(--color-border)]">
       <h2 class="text-xl font-bold text-[var(--color-heading)] mb-2">联系我</h2>
       <p class="text-sm text-[var(--color-text-secondary)] mb-5">
-        欢迎技术交流、合作探讨，或者只是来打个招呼 👋
+        欢迎技术交流与合作探讨 👋
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
         <a
@@ -250,6 +286,17 @@ const socials = [
           <span class="text-lg">{{ s.icon }}</span>
           <span class="text-sm font-medium text-[var(--color-heading)]">{{ s.name }}</span>
         </a>
+        <a
+          href="/夏文强-简历附件-2026.1.pdf"
+          download
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl no-underline
+                 bg-blue-500 text-white shadow-sm
+                 hover:bg-blue-600 hover:shadow-md
+                 transition-all duration-200"
+        >
+          <span class="text-lg">📄</span>
+          <span class="text-sm font-medium">下载简历 PDF</span>
+        </a>
       </div>
     </section>
 
@@ -257,7 +304,7 @@ const socials = [
     <Teleport to="body">
       <div
         v-if="previewImage"
-        class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-pointer"
+        class="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 cursor-pointer"
         @click.self="closePreview"
       >
         <button
@@ -267,11 +314,13 @@ const socials = [
         >
           ✕
         </button>
-        <img
-          :src="previewImage"
-          alt="证书预览"
-          class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
-        />
+        <div class="max-w-full max-h-[90vh] overflow-auto rounded-xl">
+          <img
+            :src="previewImage"
+            alt="预览"
+            class="max-w-full object-contain shadow-2xl"
+          />
+        </div>
       </div>
     </Teleport>
   </div>
