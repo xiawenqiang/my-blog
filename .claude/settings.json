@@ -12,7 +12,8 @@
       "Bash(node -e ' *)",
       "Bash(where python3 *)",
       "Bash(where python *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s \"https://api.github.com/repos/xiawenqiang/my-blog\")"
     ]
   }
 }

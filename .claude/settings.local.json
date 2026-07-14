@@ -13,7 +13,10 @@
       "Bash(git ls-remote *)",
       "Bash(git commit -m 'Fix: add contents write permission for gh-pages deployment *)",
       "Bash(nslookup github.com)",
-      "Bash(ping -n 1 github.com)"
+      "Bash(ping -n 1 github.com)",
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)",
+      "Bash(curl -sI \"https://xiawenqiang.github.io/my-blog/\")"
     ]
   }
 }

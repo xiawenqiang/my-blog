@@ -2,40 +2,14 @@
 import { ref } from 'vue'
 
 const previewImage = ref<string | null>(null)
-const previewLabel = ref('')
 
-function openPreview(url: string, label: string) {
+function openPreview(url: string) {
   previewImage.value = url
-  previewLabel.value = label
 }
 
 function closePreview() {
   previewImage.value = null
-  previewLabel.value = ''
 }
-
-function handleImageError(e: Event) {
-  const el = e.target as HTMLImageElement
-  el.style.display = 'none'
-  const parent = el.parentElement
-  if (parent) {
-    const ph = document.createElement('div')
-    ph.className = 'w-full h-full flex items-center justify-center text-5xl'
-    ph.textContent = '📜'
-    parent.appendChild(ph)
-  }
-}
-
-// ========== 长图分段展示 ==========
-// 原图 2560×8640，用 object-position 控制每段显示的纵向位置
-
-const introSections = [
-  { id: 'profile',   title: '个人简介', position: '0% 0%' },
-  { id: 'experience',title: '工作经历', position: '0% 25%' },
-  { id: 'projects',  title: '项目经验', position: '0% 50%' },
-  { id: 'skills',    title: '技能 & 证书', position: '0% 75%' },
-  { id: 'honors',    title: '荣誉 & 成就', position: '0% 100%' },
-]
 
 const skills = [
   'Vue.js', 'React', 'TypeScript', 'JavaScript',
@@ -52,19 +26,16 @@ const socials = [
 <template>
   <div class="max-w-4xl mx-auto px-4 py-12">
     <!-- ==================== 头像 & 简介 ==================== -->
-    <section class="text-center mb-14">
-      <div class="relative inline-block mb-5">
+    <section class="text-center mb-12">
+      <div class="inline-block mb-5">
         <div
           class="w-28 h-28 rounded-full overflow-hidden ring-4 ring-[var(--color-accent)]
                  ring-offset-4 ring-offset-[var(--color-bg)] mx-auto shadow-lg
-                 hover:scale-105 transition-transform duration-300
                  bg-gradient-to-br from-blue-500 to-indigo-600
                  flex items-center justify-center"
         >
           <span class="text-5xl text-white font-bold select-none">夏</span>
         </div>
-        <div class="absolute -bottom-1 -right-1 w-7 h-7 bg-green-400 rounded-full
-                    border-4 border-[var(--color-bg)]" title="在线" />
       </div>
 
       <h1 class="text-3xl font-bold text-[var(--color-heading)] mb-2">夏文强</h1>
@@ -96,7 +67,7 @@ const socials = [
     </section>
 
     <!-- ==================== 技能标签 ==================== -->
-    <section class="mb-14">
+    <section class="mb-12">
       <h2 class="text-lg font-bold text-[var(--color-heading)] mb-4 text-center">技术栈</h2>
       <div class="flex flex-wrap justify-center gap-2">
         <span
@@ -111,59 +82,35 @@ const socials = [
       </div>
     </section>
 
-    <!-- ==================== 个人介绍 · 图片分段 ==================== -->
-    <section class="mb-14">
-      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-1 text-center">个人介绍</h2>
+    <!-- ==================== 个人介绍长图 ==================== -->
+    <section class="mb-12">
+      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-2 text-center">个人介绍</h2>
       <p class="text-xs text-[var(--color-text-secondary)] text-center mb-5">
-        点击卡片放大查看完整原图
+        点击图片可放大查看完整内容
       </p>
 
-      <div class="space-y-4">
-        <div
-          v-for="s in introSections"
-          :key="s.id"
-          class="group rounded-xl border border-[var(--color-border)] overflow-hidden
-                 bg-[var(--color-bg)] cursor-pointer
-                 hover:shadow-lg hover:border-[var(--color-accent)]/50
-                 transition-all duration-300"
-          @click="openPreview('/夏文强_01(1).png', s.title)"
-        >
-          <!-- 卡片标题栏 -->
-          <div class="flex items-center gap-3 px-4 py-3 border-b border-[var(--color-border)]
-                      bg-[var(--color-code-bg)]/60">
-            <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            <h3 class="text-sm font-semibold text-[var(--color-heading)]">{{ s.title }}</h3>
-            <span class="ml-auto text-xs text-[var(--color-text-secondary)]
-                         opacity-0 group-hover:opacity-100 transition-opacity">
-              点击放大 🔍
-            </span>
-          </div>
-
-          <!-- 图片切片 -->
-          <div class="h-56 overflow-hidden bg-[var(--color-code-bg)]">
-            <img
-              :src="'/夏文强_01(1).png'"
-              :alt="s.title"
-              class="w-full h-full object-cover transition-transform duration-700
-                     group-hover:scale-105"
-              :style="{ objectPosition: s.position }"
-              loading="lazy"
-              @error="handleImageError"
-            />
-          </div>
-        </div>
+      <div
+        class="rounded-xl border border-[var(--color-border)] overflow-hidden
+               bg-[var(--color-code-bg)] shadow-sm cursor-pointer
+               hover:shadow-md transition-shadow"
+        @click="openPreview('/夏文强_01(1).png')"
+      >
+        <img
+          src="/夏文强_01(1).png"
+          alt="夏文强个人介绍"
+          class="w-full"
+        />
       </div>
 
-      <!-- 查看完整长图 -->
-      <div class="text-center mt-4">
+      <p class="text-center mt-3">
         <button
           class="text-sm text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]
                  underline underline-offset-2 transition-colors cursor-pointer bg-transparent border-0"
-          @click="openPreview('/夏文强_01(1).png', '完整个人介绍')"
+          @click="openPreview('/夏文强_01(1).png')"
         >
-          查看完整长图 →
+          点击放大查看完整长图 →
         </button>
-      </div>
+      </p>
     </section>
 
     <!-- ==================== 联系我 ==================== -->
@@ -206,17 +153,14 @@ const socials = [
         class="fixed inset-0 z-50 bg-black/85 flex flex-col items-center justify-center p-4"
         @click.self="closePreview"
       >
-        <div class="flex items-center justify-between w-full max-w-5xl mb-3 px-2">
-          <span class="text-white/80 text-sm">{{ previewLabel }}</span>
-          <button
-            class="w-9 h-9 flex items-center justify-center rounded-full
-                   bg-white/10 hover:bg-white/20 text-white text-base transition-colors"
-            @click="closePreview"
-          >
-            ✕
-          </button>
-        </div>
-        <div class="max-w-5xl max-h-[85vh] overflow-auto rounded-xl shadow-2xl">
+        <button
+          class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center
+                 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl transition-colors"
+          @click="closePreview"
+        >
+          ✕
+        </button>
+        <div class="max-w-5xl max-h-[90vh] overflow-auto rounded-xl shadow-2xl">
           <img :src="previewImage" alt="预览" class="w-full object-contain" />
         </div>
       </div>
