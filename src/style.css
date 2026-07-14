@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #374151;
+    --color-text-secondary: #6b7280;
+    --color-heading: #111827;
+    --color-accent: #3b82f6;
+    --color-accent-hover: #2563eb;
+    --color-border: #e5e7eb;
+    --color-code-bg: #f3f4f6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #0f172a;
+      --color-text: #cbd5e1;
+      --color-text-secondary: #94a3b8;
+      --color-heading: #f1f5f9;
+      --color-accent: #60a5fa;
+      --color-accent-hover: #3b82f6;
+      --color-border: #1e293b;
+      --color-code-bg: #1e293b;
+    }
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-[var(--color-heading)] font-bold;
+  }
+
+  .prose h1 { @apply text-3xl mt-8 mb-4; }
+  .prose h2 { @apply text-2xl mt-6 mb-3; }
+  .prose h3 { @apply text-xl mt-5 mb-2; }
+
+  .prose p {
+    @apply my-3 leading-relaxed;
+  }
+
+  .prose a {
+    @apply text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline;
+  }
+
+  .prose code {
+    @apply bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-[var(--color-code-bg)] p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-3 pl-6;
+  }
+
+  .prose ul { @apply list-disc; }
+  .prose ol { @apply list-decimal; }
+
+  .prose li { @apply my-1; }
+
+  .prose blockquote {
+    @apply border-l-4 border-[var(--color-accent)] pl-4 my-4 italic text-[var(--color-text-secondary)];
+  }
+
+  .prose img {
+    @apply rounded-lg max-w-full my-4;
+  }
+
+  .prose table {
+    @apply w-full border-collapse my-4;
+  }
+
+  .prose th,
+  .prose td {
+    @apply border border-[var(--color-border)] px-3 py-2 text-left;
+  }
+
+  .prose th {
+    @apply bg-[var(--color-code-bg)] font-semibold;
+  }
+
+  .prose hr {
+    @apply border-[var(--color-border)] my-8;
+  }
+}
