@@ -10,7 +10,7 @@ const tags = computed(() => postsStore.tags)
 function formatDate(dateStr: string): string {
   if (!dateStr) return ''
   const d = new Date(dateStr)
-  return d.toLocaleDateString('en-US', {
+  return d.toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -20,17 +20,17 @@ function formatDate(dateStr: string): string {
 
 <template>
   <div class="max-w-4xl mx-auto px-4 py-12">
-    <!-- Header -->
+    <!-- 头部 -->
     <section class="mb-16 text-center">
       <h1 class="text-4xl font-bold text-[var(--color-heading)] mb-4">
-        Welcome to My Blog
+        我的博客
       </h1>
       <p class="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-        Thoughts, tutorials, and insights about web development, programming, and technology.
+        记录学习、思考和开发过程中的点滴收获。
       </p>
     </section>
 
-    <!-- Tags -->
+    <!-- 标签 -->
     <section v-if="tags.length > 0" class="mb-12">
       <div class="flex flex-wrap justify-center gap-2">
         <span
@@ -43,7 +43,7 @@ function formatDate(dateStr: string): string {
       </div>
     </section>
 
-    <!-- Post List -->
+    <!-- 文章列表 -->
     <section v-if="posts.length > 0" class="space-y-8">
       <article
         v-for="post in posts"
@@ -83,15 +83,15 @@ function formatDate(dateStr: string): string {
           :to="{ name: 'post', params: { slug: post.slug } }"
           class="inline-block mt-4 text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] no-underline"
         >
-          Read more →
+          阅读全文 →
         </RouterLink>
       </article>
     </section>
 
-    <!-- Empty State -->
+    <!-- 空状态 -->
     <section v-else class="text-center py-16">
       <p class="text-lg text-[var(--color-text-secondary)]">
-        No posts yet. Add <code class="px-1.5 py-0.5 rounded bg-[var(--color-code-bg)] text-sm">.md</code> files to <code class="px-1.5 py-0.5 rounded bg-[var(--color-code-bg)] text-sm">src/posts/</code> to get started.
+        还没有文章。在 <code class="px-1.5 py-0.5 rounded bg-[var(--color-code-bg)] text-sm">src/posts/</code> 目录下添加 <code class="px-1.5 py-0.5 rounded bg-[var(--color-code-bg)] text-sm">.md</code> 文件即可开始写作。
       </p>
     </section>
   </div>

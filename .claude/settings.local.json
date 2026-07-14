@@ -11,7 +11,9 @@
       "Bash(node -e ' *)",
       "Bash(pkill -f \"vite\")",
       "Bash(git ls-remote *)",
-      "Bash(git commit -m 'Fix: add contents write permission for gh-pages deployment *)"
+      "Bash(git commit -m 'Fix: add contents write permission for gh-pages deployment *)",
+      "Bash(nslookup github.com)",
+      "Bash(ping -n 1 github.com)"
     ]
   }
 }

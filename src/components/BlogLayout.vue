@@ -10,14 +10,14 @@ import { RouterLink } from 'vue-router'
           to="/"
           class="text-xl font-bold text-[var(--color-heading)] hover:text-[var(--color-accent)] transition-colors no-underline"
         >
-          My Blog
+          我的博客
         </RouterLink>
         <div class="flex items-center gap-6">
           <RouterLink
             to="/"
             class="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline"
           >
-            Home
+            首页
           </RouterLink>
           <a
             href="https://github.com"
@@ -37,7 +37,7 @@ import { RouterLink } from 'vue-router'
 
     <footer class="border-t border-[var(--color-border)] py-8 mt-12">
       <div class="max-w-4xl mx-auto px-4 text-center text-sm text-[var(--color-text-secondary)]">
-        <p>&copy; {{ new Date().getFullYear() }} My Blog. Built with Vue + Vite.</p>
+        <p>&copy; {{ new Date().getFullYear() }} 我的博客 · 基于 Vue + Vite 构建</p>
       </div>
     </footer>
   </div>

@@ -12,7 +12,7 @@ const post = computed(() => postsStore.getPostBySlug(slug.value))
 function formatDate(dateStr: string): string {
   if (!dateStr) return ''
   const d = new Date(dateStr)
-  return d.toLocaleDateString('en-US', {
+  return d.toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -22,31 +22,30 @@ function formatDate(dateStr: string): string {
 
 <template>
   <div class="max-w-3xl mx-auto px-4 py-12">
-    <!-- Not Found -->
+    <!-- 未找到 -->
     <div v-if="!post" class="text-center py-16">
       <h1 class="text-2xl font-bold text-[var(--color-heading)] mb-4">
-        Post Not Found
+        文章未找到
       </h1>
       <p class="text-[var(--color-text-secondary)] mb-6">
-        The post "{{ slug }}" doesn't exist.
+        没有找到「{{ slug }}」这篇文章。
       </p>
       <RouterLink
         to="/"
         class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] no-underline"
       >
-        ← Back to Home
+        ← 返回首页
       </RouterLink>
     </div>
 
-    <!-- Post Content -->
+    <!-- 文章内容 -->
     <article v-else>
-      <!-- Header -->
       <header class="mb-8">
         <RouterLink
           to="/"
           class="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline mb-4 inline-block"
         >
-          ← Back to Home
+          ← 返回首页
         </RouterLink>
 
         <h1 class="text-4xl font-bold text-[var(--color-heading)] mb-4">
@@ -74,16 +73,16 @@ function formatDate(dateStr: string): string {
         />
       </header>
 
-      <!-- Content -->
+      <!-- 正文 -->
       <div class="prose" v-html="post.content"></div>
 
-      <!-- Footer -->
+      <!-- 底部 -->
       <footer class="mt-12 pt-8 border-t border-[var(--color-border)]">
         <RouterLink
           to="/"
           class="text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] no-underline"
         >
-          ← Back to Home
+          ← 返回首页
         </RouterLink>
       </footer>
     </article>
