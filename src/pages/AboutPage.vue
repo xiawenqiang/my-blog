@@ -21,6 +21,16 @@ const socials = [
   { name: 'GitHub', url: 'https://github.com', icon: '💻' },
   { name: '邮箱', url: 'mailto:xiawenqiang@example.com', icon: '📧' },
 ]
+
+// 技能标签颜色
+const skillColors = [
+  'bg-[var(--color-accent-light)] text-[var(--color-accent)] border-[var(--color-accent)]/20',
+  'bg-[var(--color-gold-light)] text-[var(--color-gold)] border-[var(--color-gold)]/30',
+  'bg-[var(--color-teal-light)] text-[var(--color-teal)] border-[var(--color-teal)]/30',
+]
+function skillColorClass(index: number) {
+  return skillColors[index % skillColors.length]
+}
 </script>
 
 <template>
@@ -31,7 +41,7 @@ const socials = [
         <div
           class="w-28 h-28 rounded-full overflow-hidden ring-4 ring-[var(--color-accent)]
                  ring-offset-4 ring-offset-[var(--color-bg)] mx-auto shadow-lg
-                 bg-gradient-to-br from-blue-500 to-indigo-600
+                 bg-gradient-to-br from-[#559966] to-[#3ab9a8]
                  flex items-center justify-center"
         >
           <span class="text-5xl text-white font-bold select-none">夏</span>
@@ -50,7 +60,8 @@ const socials = [
           :href="s.url" target="_blank" rel="noopener"
           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full
                  bg-[var(--color-code-bg)] text-[var(--color-text-secondary)]
-                 hover:text-[var(--color-accent)] transition-colors no-underline"
+                 hover:text-[var(--color-accent)] transition-colors no-underline
+                 border border-transparent hover:border-[var(--color-accent)]/20"
         >
           <span>{{ s.icon }}</span><span>{{ s.name }}</span>
         </a>
@@ -58,8 +69,8 @@ const socials = [
           href="/resume.pdf"
           download
           class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-sm rounded-full
-                 bg-blue-500 text-white hover:bg-blue-600 transition-colors
-                 no-underline shadow-sm font-medium"
+                 bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]
+                 transition-colors no-underline shadow-sm font-medium"
         >
           <span>📄</span><span>下载简历 PDF</span>
         </a>
@@ -68,14 +79,15 @@ const socials = [
 
     <!-- ==================== 技能标签 ==================== -->
     <section class="mb-12">
-      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-4 text-center">技术栈</h2>
+      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-5 text-center flex items-center justify-center gap-2">
+        <span class="w-1.5 h-5 rounded-full bg-[var(--color-accent)] inline-block"></span>
+        技术栈
+      </h2>
       <div class="flex flex-wrap justify-center gap-2">
         <span
-          v-for="s in skills" :key="s"
-          class="px-3 py-1.5 text-sm rounded-full border border-[var(--color-border)]
-                 bg-[var(--color-bg)] text-[var(--color-text)]
-                 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]
-                 transition-colors cursor-default"
+          v-for="(s, i) in skills" :key="s"
+          :class="skillColorClass(i)"
+          class="px-3 py-1.5 text-sm rounded-full border cursor-default transition-all hover:scale-105"
         >
           {{ s }}
         </span>
@@ -84,15 +96,18 @@ const socials = [
 
     <!-- ==================== 个人介绍长图 ==================== -->
     <section class="mb-12">
-      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-2 text-center">个人介绍</h2>
+      <h2 class="text-lg font-bold text-[var(--color-heading)] mb-2 text-center flex items-center justify-center gap-2">
+        <span class="w-1.5 h-5 rounded-full bg-[var(--color-gold)] inline-block"></span>
+        个人介绍
+      </h2>
       <p class="text-xs text-[var(--color-text-secondary)] text-center mb-5">
         点击图片可放大查看完整内容
       </p>
 
       <div
         class="rounded-xl border border-[var(--color-border)] overflow-hidden
-               bg-[var(--color-code-bg)] shadow-sm cursor-pointer
-               hover:shadow-md transition-shadow"
+               bg-[var(--color-card-bg)] shadow-sm cursor-pointer
+               hover:shadow-md hover:border-[var(--color-accent)]/30 transition-all"
         @click="openPreview('/intro.png')"
       >
         <img
@@ -114,8 +129,8 @@ const socials = [
     </section>
 
     <!-- ==================== 联系我 ==================== -->
-    <section class="text-center p-8 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50
-                    dark:from-blue-900/10 dark:to-indigo-900/10
+    <section class="text-center p-8 rounded-2xl
+                    bg-gradient-to-br from-[var(--color-accent-light)] to-[var(--color-gold-light)]
                     border border-[var(--color-border)]">
       <h2 class="text-lg font-bold text-[var(--color-heading)] mb-2">联系我</h2>
       <p class="text-sm text-[var(--color-text-secondary)] mb-5">
@@ -126,8 +141,8 @@ const socials = [
           v-for="s in socials" :key="s.name"
           :href="s.url" target="_blank" rel="noopener"
           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg no-underline
-                 bg-white dark:bg-gray-800 shadow-sm border border-[var(--color-border)]
-                 hover:shadow-md hover:border-[var(--color-accent)]
+                 bg-[var(--color-card-bg)] shadow-sm border border-[var(--color-border)]
+                 hover:shadow-md hover:border-[var(--color-accent)]/40
                  transition-all duration-200"
         >
           <span class="text-base">{{ s.icon }}</span>
@@ -137,7 +152,8 @@ const socials = [
           href="/resume.pdf"
           download
           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg no-underline
-                 bg-blue-500 text-white shadow-sm hover:bg-blue-600 hover:shadow-md
+                 bg-[var(--color-accent)] text-white shadow-sm
+                 hover:bg-[var(--color-accent-hover)] hover:shadow-md
                  transition-all duration-200"
         >
           <span class="text-base">📄</span>
